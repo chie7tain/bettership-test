@@ -1,8 +1,9 @@
 import {createSlice} from  "@reduxjs/toolkit";
 import type {PayloadAction} from "@reduxjs/toolkit";
 import type {User} from "./types";
+import {loadFavorites} from "./storage";
 
-const initialState: User[] = [];
+const initialState: User[] = loadFavorites();
 
 const favoritesSlice = createSlice({
   name:"favorites",
