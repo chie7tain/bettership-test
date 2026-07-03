@@ -1,15 +1,19 @@
 import {createSlice} from  "@reduxjs/toolkit";
+import type {PayloadAction} from "@reduxjs/toolkit";
+import type {User} from "./types";
+
+const initialState: User[] = [];
 
 const favoritesSlice = createSlice({
   name:"favorites",
-  initialState:[],
+  initialState,
   reducers:{
-    addFavorite: (state, action) => {
-      if(!state.find(user => user.id === action.payload.id)){
+    addFavorite: (state, action: PayloadAction<User>) => {
+      if(!state.some(user => user.id === action.payload.id)){
         state.push(action.payload)
       }
     },
-    removeFavorite:(state, action) => {
+    removeFavorite:(state, action: PayloadAction<number>) => {
       return state.filter(user => user.id !== action.payload)
     }
   }
